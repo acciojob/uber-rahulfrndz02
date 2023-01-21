@@ -7,12 +7,12 @@ import javax.persistence.*;
 public class Cab{
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
 
     private int perKmRate;
 
-    private boolean available;
+    boolean available;
 
     //mapping with driver
     @OneToOne
@@ -22,10 +22,11 @@ public class Cab{
     public Cab() {
     }
 
-    public Cab(int id, int perKmRate, boolean available) {
+    public Cab(int id, int perKmRate, boolean available, Driver driver) {
         this.id = id;
         this.perKmRate = perKmRate;
         this.available = available;
+        this.driver = driver;
     }
 
     public int getId() {
@@ -45,6 +46,10 @@ public class Cab{
     }
 
     public boolean isAvailable() {
+        return available;
+    }
+
+    public boolean getAvailable() {
         return available;
     }
 
