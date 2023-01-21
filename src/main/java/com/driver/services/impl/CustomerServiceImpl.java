@@ -33,8 +33,8 @@ public class CustomerServiceImpl implements CustomerService {
 	@Override
 	public void register(Customer customer) {
 		//Save the customer in database
-		customerService.register(customer);
-		//customerRepository2.save(customer);
+		//customerService.register(customer);
+		customerRepository2.save(customer);
 	}
 
 	@Override
@@ -52,7 +52,7 @@ public class CustomerServiceImpl implements CustomerService {
 		//Avoid using SQL query
 		TripBooking tripBooking = new TripBooking();
 		Cab cab = new Cab();
-		if(cab.getAvailable()==true){
+		if(cab.getAvailable()){
 			Customer customer = customerRepository2.findById(customerId).get();
 			tripBooking.setTripBookingId(customer.getCustomerId());
 			tripBooking.setFromLocation(fromLocation);

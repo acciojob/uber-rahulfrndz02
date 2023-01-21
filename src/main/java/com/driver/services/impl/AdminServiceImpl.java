@@ -48,7 +48,8 @@ public class AdminServiceImpl implements AdminService {
 	public void deleteAdmin(int adminId){
 		// Delete admin without using deleteById function
 		Admin admin = adminRepository1.findById(adminId).get();
-		adminService.deleteAdmin(admin.getAdminId());
+		//adminService.deleteAdmin(admin.getAdminId());
+		adminRepository1.deleteById(admin.getAdminId());
 	}
 
 	@Override
