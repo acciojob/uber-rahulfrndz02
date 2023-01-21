@@ -53,4 +53,12 @@ public class Customer{
     public void setPassword(String password) {
         this.password = password;
     }
+
+    public List<TripBooking> getTripBookingList() {
+        return tripBookingList;
+    }
+
+    public void setTripBookingList(List<TripBooking> tripBookingList) {
+        this.tripBookingList = tripBookingList;
+    }
 }
