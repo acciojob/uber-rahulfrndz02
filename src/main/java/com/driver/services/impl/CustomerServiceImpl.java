@@ -40,10 +40,10 @@ public class CustomerServiceImpl implements CustomerService {
 	@Override
 	public void deleteCustomer(Integer customerId) {
 		// Delete customer without using deleteById function
-		if(customerRepository2.existsById(customerId)) {
+		//if(customerRepository2.existsById(customerId)) {
 			Customer customer = customerRepository2.findById(customerId).get();
 			customerService.deleteCustomer(customer.getCustomerId());
-		}
+		//}
 	}
 
 	@Override
@@ -52,7 +52,7 @@ public class CustomerServiceImpl implements CustomerService {
 		//Avoid using SQL query
 		TripBooking tripBooking = new TripBooking();
 		Cab cab = new Cab();
-		if(cab.isAvailable()==true){
+		if(cab.getAvailable()==true){
 			Customer customer = customerRepository2.findById(customerId).get();
 			tripBooking.setTripBookingId(customer.getCustomerId());
 			tripBooking.setFromLocation(fromLocation);
