@@ -7,7 +7,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-@Table
 public class TripBooking{
 
     @Id
@@ -20,6 +19,7 @@ public class TripBooking{
 
     private int distanceInKm;
 
+    @Enumerated(EnumType.STRING)
     private TripStatus status;
 
     private int bill;
@@ -37,8 +37,7 @@ public class TripBooking{
     public TripBooking() {
     }
 
-    public TripBooking(int tripBookingId, String fromLocation, String toLocation, int distanceInKm, TripStatus status, int bill) {
-        this.tripBookingId = tripBookingId;
+    public TripBooking(String fromLocation, String toLocation, int distanceInKm, TripStatus status, int bill) {
         this.fromLocation = fromLocation;
         this.toLocation = toLocation;
         this.distanceInKm = distanceInKm;

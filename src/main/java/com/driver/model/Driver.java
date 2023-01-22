@@ -18,28 +18,22 @@ public class Driver{
 
 
     //mapping with cab
-    @OneToOne
-    @JoinColumn
+    @OneToOne(mappedBy = "driver",cascade = CascadeType.ALL)
     private Cab cab;
 
     //mapping with tripBooking, driver is parent and tripBooking is child
     @OneToMany(mappedBy = "driver", cascade = CascadeType.ALL)
-    List<TripBooking> tripBookingList = new ArrayList<>();
+    List<TripBooking> tripBookingList;
 
 
     public Driver() {
-    }
-
-    public Driver(int driverId, String mobile, String password) {
-        this.driverId = driverId;
-        this.mobile = mobile;
-        this.password = password;
     }
 
     public Driver(String mobile, String password) {
         this.mobile = mobile;
         this.password = password;
     }
+
 
     public int getDriverId() {
         return driverId;

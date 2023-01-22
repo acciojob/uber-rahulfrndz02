@@ -3,7 +3,6 @@ package com.driver.model;
 import javax.persistence.*;
 
 @Entity
-@Table
 public class Cab{
 
     @Id
@@ -12,6 +11,7 @@ public class Cab{
 
     private int perKmRate;
 
+    @Column(columnDefinition = "TINYINT(1)")
     boolean available;
 
     //mapping with driver
@@ -22,11 +22,9 @@ public class Cab{
     public Cab() {
     }
 
-    public Cab(int id, int perKmRate, boolean available, Driver driver) {
-        this.id = id;
+    public Cab(int perKmRate, boolean available) {
         this.perKmRate = perKmRate;
         this.available = available;
-        this.driver = driver;
     }
 
     public int getId() {

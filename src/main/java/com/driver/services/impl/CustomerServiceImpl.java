@@ -43,9 +43,9 @@ public class CustomerServiceImpl implements CustomerService {
 	public void deleteCustomer(Integer customerId) {
 		// Delete customer without using deleteById function
 		//if(customerRepository2.existsById(customerId)) {
-			//Customer customer = customerRepository2.findById(customerId).get();
+			Customer customer = customerRepository2.findById(customerId).get();
 			//customerService.deleteCustomer(customer.getCustomerId());
-		customerRepository2.delete(customerId);
+		customerRepository2.delete(customer);
 		//}
 	}
 
@@ -67,6 +67,8 @@ public class CustomerServiceImpl implements CustomerService {
 //			throw new Exception("No cab available!");
 //		}
 //	  return tripBooking;
+
+
 //		List<Driver> driverList =driverRepository2.findAllByOrderByDriverId();
 //		Driver availableDriver = null;
 //		for(Driver driver : driverList){
@@ -160,11 +162,12 @@ public class CustomerServiceImpl implements CustomerService {
 	@Override
 	public void completeTrip(Integer tripId){
 		//Complete the trip having given trip Id and update TripBooking attributes accordingly
-		TripBooking tripBooking = tripBookingRepository2.findById(tripId).get();
-		tripBooking.setStatus(TripStatus.COMPLETED);
-		Driver driver = tripBooking.getDriver();
-		driver.getCab().setAvailable(true);
-
-		driverRepository2.save(driver);
+		if(tripBookingRepository2.findById(tripId).isPresent()) {
+			TripBooking tripBooking = tripBookingRepository2.findById(tripId).get();
+			tripBooking.setStatus(TripStatus.COMPLETED);
+			Driver driver = tripBooking.getDriver();
+			driver.getCab().setAvailable(true); //getting driver's cab
+			driverRepository2.save(driver);
+		}
 	}
 }

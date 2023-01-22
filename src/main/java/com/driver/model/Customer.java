@@ -18,14 +18,13 @@ public class Customer{
 
     //mapping with tripBooking
     @OneToMany(mappedBy = "customer", cascade = CascadeType.ALL)
-    List<TripBooking> tripBookingList = new ArrayList<>();
+    List<TripBooking> tripBookingList;
 
 
     public Customer() {
     }
 
-    public Customer(int customerId, String mobile, String password) {
-        this.customerId = customerId;
+    public Customer(String mobile, String password) {
         this.mobile = mobile;
         this.password = password;
     }
